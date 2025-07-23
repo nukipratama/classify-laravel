@@ -9,7 +9,7 @@ use App\Services\JettyService;
 use App\Exceptions\CustomException;
 use Illuminate\Validation\Rule;
 
-class HomeController extends Controller
+class JettyController extends Controller
 {
     protected $jettyService;
 
@@ -23,7 +23,7 @@ class HomeController extends Controller
         $shapes = Shape::cases();
         $cranes = Crane::cases();
 
-        return view('home', [
+        return view('jetty', [
             'shapes' => $shapes,
             'cranes' => $cranes,
         ]);
@@ -54,10 +54,10 @@ class HomeController extends Controller
         }
 
         if ($alert) {
-            return redirect()->route('home')->withInput()->with('alert', $alert);
+            return redirect()->route('jetty')->withInput()->with('alert', $alert);
         }
 
-        return redirect()->route('home')->with([
+        return redirect()->route('jetty')->with([
             'data' => $data,
             'withData' => true,
         ]);

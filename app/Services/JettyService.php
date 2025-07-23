@@ -46,12 +46,20 @@ class JettyService
      */
     private function validate(float $berat, Shape $bentuk, Crane $crane): void
     {
+        if ($berat < 1.0) {
+            throw new CustomException('Berat tidak boleh kurang dari 1.0 Ton.');
+        }
+
+        if ($berat > 63.0) {
+            throw new CustomException('Jetty tidak kuat.');
+        }
+
         if ($crane === Crane::CRANE_120 && $berat > 28.0) {
             throw new CustomException('Crane tidak mendukung.');
         }
 
-        if ($crane === Crane::CRANE_280 && $berat > 63.0) {
-            throw new CustomException('Jetty tidak kuat');
+        if ($crane === Crane::CRANE_280 && $berat > 50.0 && $bentuk === Shape::SQUARE_CYLINDER) {
+            throw new CustomException('Lifting Gear tidak tersedia.');
         }
     }
 }

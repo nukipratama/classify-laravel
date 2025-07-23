@@ -26,7 +26,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('home') }}" method="POST" class="space-y-6">
+                <form action="{{ route('jetty') }}" method="POST" class="space-y-6">
                     @csrf
 
                     <!-- Berat Input -->

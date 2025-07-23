@@ -30,7 +30,7 @@ return new class extends Migration
             $table->id();
             $table->enum('type', self::GEAR_TYPES);
             $table->string('name');
-            $table->decimal('swl');
+            $table->decimal('swl', 8, 2);
             $table->unsignedInteger('qty');
             $table->timestamps();
         });
