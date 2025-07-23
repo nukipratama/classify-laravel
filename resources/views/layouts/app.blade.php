@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - @yield('title', 'Home')</title>
+    <title>{{ config('app.name') }} - @yield('title', 'Home')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,8 +20,54 @@
 <body class="font-sans antialiased">
     <div id="app">
         <!-- Navigation -->
-        <nav class="bg-white shadow">
-            @yield('navigation')
+        <nav class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <!-- Logo/Brand -->
+                    <div class="flex-shrink-0">
+                        <a href="{{ route('home') }}"
+                            class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                            {{ config('app.name') }}
+                        </a>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="{{ route('home') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('home') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                            Home
+                        </a>
+                        <a href="{{ route('gear.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('gear.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                            Gear
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden">
+                        <button type="button"
+                            class="mobile-menu-button p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <span class="sr-only">Open menu</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile menu -->
+                <div class="mobile-menu hidden md:hidden border-t border-gray-200 pt-2 pb-3">
+                    <a href="{{ route('home') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('home') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                        Home
+                    </a>
+                    <a href="{{ route('gear.index') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('gear.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                        Gear
+                    </a>
+                </div>
+            </div>
         </nav>
 
         <!-- Page Heading -->
@@ -47,6 +93,20 @@
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
     @stack('scripts')
+
+    <!-- Mobile menu toggle script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
