@@ -41,8 +41,8 @@
                             class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('open-yard.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                             Open Yard
                         </a>
-                        <a href="{{ route('gear.index') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('gear.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                        <a href="{{ route('inventory.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('inventory.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                             Inventory Asset
                         </a>
                     </div>
@@ -70,8 +70,8 @@
                         class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('open-yard.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                         Open Yard
                     </a>
-                    <a href="{{ route('gear.index') }}"
-                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('gear.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                    <a href="{{ route('inventory.index') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('inventory.*') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                         Inventory Asset
                     </a>
                 </div>

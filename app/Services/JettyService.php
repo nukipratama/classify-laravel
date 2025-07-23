@@ -17,7 +17,7 @@ class JettyService
     }
 
     /**
-     * Process gear data after validation
+     * Process inventory data after validation
      *
      * @param float $berat
      * @param Shape $bentuk
@@ -59,7 +59,7 @@ class JettyService
         }
 
         if ($crane === Crane::CRANE_280 && $berat > 50.0 && $bentuk === Shape::SQUARE_CYLINDER) {
-            throw new CustomException('Lifting Gear tidak tersedia.');
+            throw new CustomException('Lifting Equipment tidak tersedia.');
         }
     }
 }

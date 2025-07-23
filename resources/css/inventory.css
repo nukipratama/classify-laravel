@@ -1,0 +1,32 @@
+/* Inventory Accordion Styles */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-checkbox:checked + .accordion-header + .accordion-content {
+    max-height: 1000px;
+    transition: max-height 0.3s ease-in;
+}
+
+.accordion-checkbox {
+    display: none;
+}
+
+.accordion-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.accordion-header:hover {
+    background-color: #dbeafe;
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+}
+
+.accordion-checkbox:checked + .accordion-header .chevron {
+    transform: rotate(180deg);
+}

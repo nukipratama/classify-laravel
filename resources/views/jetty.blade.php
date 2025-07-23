@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Jetty Classification')
+
 @section('content')
     <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Jetty Classification</h1>
+                <p class="mt-2 text-gray-600">Classify based on Weight, Shape, and Crane Capacity</p>
+            </div>
 
             <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                 <!-- Alert -->

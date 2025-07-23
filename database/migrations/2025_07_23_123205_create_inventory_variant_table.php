@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public const GEAR_TYPES = [
+    public const INVENTORY_TYPES = [
         'wire_sling',
         'shackle',
         'hook',
@@ -26,13 +26,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gear', function (Blueprint $table) {
+        Schema::create('inventory_variant', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', self::GEAR_TYPES);
+            $table->enum('type', self::INVENTORY_TYPES);
             $table->string('name');
-            $table->decimal('swl', 8, 2);
-            $table->unsignedInteger('qty');
+            $table->decimal('swl', 8, 2)->default(0);
+            $table->decimal('length', 8, 2)->default(0);
             $table->timestamps();
+
+            $table->unique(['type', 'name', 'swl', 'length'], 'type_name_swl_length_unique');
         });
     }
 
@@ -41,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gear');
+        Schema::dropIfExists('inventory_variant');
     }
 };
