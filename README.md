@@ -1,61 +1,311 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Classify - Port Terminal Asset Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based web application for managing lifting equipment and jetty operations at port terminals. Features intelligent cargo classification and comprehensive inventory management.
 
-## About Laravel
+## 🚢 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 1. **Jetty Classification System**
+- Automatically classifies cargo based on weight, shape, and crane capacity
+- Supports 120-Ton and 280-Ton cranes with safety validation
+- Handles Square (4 Padeyes) and Square/Cylinder (2 Padeyes) cargo shapes
+- Suggests appropriate lifting equipment in real-time
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 2. **Inventory Asset Management**
+- Manages 12+ equipment types: Wire Slings, Shackles, Hooks, Master Links, Lashing, Chain Slings, Webbing Slings, Accessories, Steel Plates, Chain Blocks, and CCU units
+- Tracks quantities, SWL ratings, dimensions, and expiration dates
+- Real-time availability monitoring
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 3. **Open Yard Management**
+- Dedicated interface for yard operations
+- Integrated with inventory and jetty systems
 
-## Learning Laravel
+### 4. **Modern Web Interface**
+- Responsive design with Tailwind CSS
+- Intuitive navigation and real-time validation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠 Technology Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Backend Framework**: Laravel 12.x
+- **PHP Version**: 8.2+
+- **Frontend**: 
+  - Tailwind CSS 4.0
+  - Vite 6.x for asset compilation
+  - Blade templating engine
+- **Database**: SQLite (default), MySQL/PostgreSQL supported
+- **Development Environment**: Laravel Sail (Docker)
+- **Asset Management**: Vite with hot module replacement
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📋 System Requirements
 
-## Laravel Sponsors
+### Development Environment
+- **PHP**: 8.2 or higher
+- **Composer**: Latest version
+- **Node.js**: 18.x or higher
+- **npm**: 9.x or higher
+- **Database**: SQLite (included) or MySQL 8.0+/PostgreSQL 13+
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Production Environment
+- **Web Server**: Nginx or Apache
+- **PHP**: 8.2 with extensions: BCMath, Ctype, Fileinfo, JSON, Mbstring, OpenSSL, PDO, Tokenizer, XML
+- **Database**: MySQL 8.0+ or PostgreSQL 13+
+- **SSL Certificate**: Recommended for production
 
-### Premium Partners
+## 🚀 Installation & Setup
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Option 1: Standard Installation
 
-## Contributing
+#### 1. Clone the Repository
+```bash
+git clone <repository-url> classify-laravel
+cd classify-laravel
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 2. Install PHP Dependencies
+```bash
+composer install
+```
 
-## Code of Conduct
+#### 3. Install JavaScript Dependencies
+```bash
+npm install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 4. Environment Configuration
+```bash
+# Copy environment file
+cp .env.example .env
 
-## Security Vulnerabilities
+# Generate application key
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# The default SQLite configuration works out of the box
+# For MySQL, update DB_CONNECTION, DB_DATABASE, DB_USERNAME, DB_PASSWORD in .env
+```
 
-## License
+#### 5. Database Setup
+```bash
+# Create SQLite database (default)
+touch database/database.sqlite
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Run migrations
+php artisan migrate
+
+# Seed the database with sample data
+php artisan db:seed
+```
+
+#### 6. Build Frontend Assets
+```bash
+# For development
+npm run dev
+
+# For production
+npm run build
+```
+
+#### 7. Start the Application
+```bash
+# Development server
+php artisan serve
+
+# Application will be available at http://localhost:8000
+```
+
+### Option 2: Docker Installation (Recommended for Development)
+
+#### 1. Clone and Setup
+```bash
+git clone <repository-url> classify-laravel
+cd classify-laravel
+cp .env.example .env
+```
+
+#### 2. Install Dependencies
+```bash
+composer install
+npm install
+```
+
+#### 3. Start with Sail
+```bash
+# Start all services
+./vendor/bin/sail up -d
+
+# Generate application key
+./vendor/bin/sail artisan key:generate
+
+# Run migrations and seeders
+./vendor/bin/sail artisan migrate --seed
+
+# Build assets
+./vendor/bin/sail npm run build
+```
+
+#### 4. Access Application
+- **Application**: http://localhost
+- **Database**: SQLite (no additional setup required)
+
+## 📊 Database Structure
+
+### Core Tables
+- **inventory_variant**: Equipment specifications and types
+- **inventory**: Current stock levels and expiration tracking
+- **jetty_map**: Cargo classification rules and equipment mapping
+
+### Key Enums
+- **InventoryVariantType**: Equipment categories
+- **Shape**: Cargo shape classifications
+- **Crane**: Available crane types and capacities
+
+## 🎯 Usage Guide
+
+### Jetty Classification
+1. Go to **Jetty** section
+2. Enter cargo weight in tons
+3. Select cargo shape and crane type
+4. Click **Classify** for equipment recommendations
+
+### Inventory Management
+1. Visit **Inventory Asset** section
+2. Browse equipment by category
+3. View stock levels, ratings, and expiration dates
+
+### Navigation
+- **Home** → Jetty classification
+- **Jetty** → Cargo classification
+- **Open Yard** → Yard operations  
+- **Inventory Asset** → Equipment inventory
+
+## 🚀 Development Workflow
+
+### Start Development Server
+```bash
+# Start the application
+php artisan serve
+
+# Application will be available at http://localhost:8000
+```
+
+### Frontend Development
+```bash
+# Development with file watching
+npm run dev
+
+# Production build
+npm run build
+```
+
+### Database Management
+```bash
+# Run migrations
+php artisan migrate
+
+# Seed database with sample data
+php artisan db:seed
+
+# Reset and reseed database
+php artisan migrate:fresh --seed
+```
+
+## 🌐 Expose with ngrok
+
+To share your local development server publicly (useful for testing or demonstrations):
+
+### 1. Install ngrok
+```bash
+# Download from https://ngrok.com/download
+# Or install via package manager:
+
+# macOS
+brew install ngrok/ngrok/ngrok
+
+# Windows (Chocolatey)
+choco install ngrok
+
+# Linux (Snap)
+snap install ngrok
+```
+
+### 2. Authenticate ngrok (one-time setup)
+```bash
+# Sign up at https://ngrok.com and get your authtoken
+ngrok config add-authtoken YOUR_AUTHTOKEN
+```
+
+### 3. Start your Laravel application
+```bash
+php artisan serve
+# Application running at http://localhost:8000
+```
+
+### 4. Expose with ngrok (in a new terminal)
+```bash
+# Expose port 8000 with HTTPS
+ngrok http 8000
+
+# Your application will be available at:
+# https://random-string.ngrok-free.app
+```
+
+### 5. Update Laravel configuration
+Add the ngrok URL to your `.env` file:
+```env
+APP_URL=https://your-ngrok-url.ngrok-free.app
+```
+
+**Note**: Free ngrok URLs change each time you restart. For persistent URLs, consider upgrading to a paid plan.
+
+## 🚀 Deployment
+
+### Production Deployment Checklist
+
+1. **Environment Setup**
+```bash
+# Set production environment
+APP_ENV=production
+APP_DEBUG=false
+
+# Configure production database
+# Set secure APP_KEY
+# Configure mail settings if needed
+```
+
+2. **Optimization**
+```bash
+# Cache configuration
+php artisan config:cache
+
+# Cache routes
+php artisan route:cache
+
+# Cache views
+php artisan view:cache
+
+# Optimize autoloader
+composer install --optimize-autoloader --no-dev
+```
+
+3. **Asset Compilation**
+```bash
+npm run build
+```
+
+4. **Web Server Configuration**
+- Point document root to `public/` directory
+- Configure URL rewriting for Laravel
+- Set appropriate file permissions
+
+## 📞 Support & Maintenance
+
+### Logs Location
+- Application logs: `storage/logs/laravel.log`
+- Web server logs: Check your web server configuration
+
+### Common Issues
+- **Database Connection**: Verify `.env` database settings
+- **File Permissions**: Ensure `storage/` and `bootstrap/cache/` are writable
+- **Asset Loading**: Run `npm run build` for production
+
+---
+
+**Classify** - Streamlining port terminal operations with intelligent asset management and cargo classification systems.
