@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Enums\InventoryVariantType;
+use App\Models\InventoryVariant;
 
 class InventorySeeder extends Seeder
 {
@@ -907,7 +908,7 @@ class InventorySeeder extends Seeder
             $normalizedName = $this->normalizeName($item['name']);
 
             // Find the inventory variant ID
-            $variant = DB::table('inventory_variant')
+            $variant = InventoryVariant::query()
                 ->where('type', $enumType)
                 ->where('name', $normalizedName)
                 ->where('swl', (float) $swl)

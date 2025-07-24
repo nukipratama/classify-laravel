@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Enums\Shape;
 use App\Enums\Crane;
 use App\Exceptions\CustomException;
+use App\Models\JettyMap;
+use App\Models\InventoryVariant;
 
 class JettyService
 {
@@ -29,10 +31,37 @@ class JettyService
     {
         $this->validate($berat, $bentuk, $crane);
 
+        $jettyMaps = JettyMap::query()
+            ->with(['inventory_variant' => fn ($q) => $q->withTotalQuantity()])
+            ->where('min_weight', '<=', $berat)
+            ->where('max_weight', '>=', $berat)
+            ->where('shape', $bentuk)
+            ->where('crane', $crane)
+            ->get();
+
+        if ($jettyMaps->isEmpty()) {
+            throw new CustomException('Not Available.');
+        }
+
+        $inventoryVariants = [];
+        $jettyMaps->each(function (JettyMap $jettyMap) use (&$inventoryVariants) {
+            if ($jettyMap->doesntHaveSufficientQuantity()) {
+                throw new CustomException('Not Available.');
+            }
+
+            $label = "{$jettyMap->required_quantity}x {$jettyMap->inventory_variant->getLabel()}";
+            if (!empty($jettyMap->note)) {
+                $label .= " ({$jettyMap->note})";
+            }
+
+            $inventoryVariants[] = $label;
+        });
+
         return [
             'berat' => $berat,
             'bentuk' => $bentuk,
             'crane' => $crane,
+            'inventory_variants' => $inventoryVariants,
         ];
     }
 

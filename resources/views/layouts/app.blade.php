@@ -25,16 +25,18 @@
                 <div class="flex justify-between items-center h-16">
                     <!-- Logo/Brand -->
                     <div class="flex-shrink-0">
-                        <a href="{{ route('jetty') }}"
-                            class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
-                            {{ config('app.name') }}
+                        <a href="{{ route('home') }}" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                            <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name') }} Logo" class="h-10 w-auto">
+                            <span class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors hidden sm:block">
+                                {{ config('app.name') }}
+                            </span>
                         </a>
                     </div>
 
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex space-x-8">
-                        <a href="{{ route('jetty') }}"
-                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('jetty') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                        <a href="{{ route('jetty.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium transition-colors {{ request()->routeIs('jetty.index') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                             Jetty
                         </a>
                         <a href="{{ route('open-yard.index') }}"
@@ -62,8 +64,8 @@
 
                 <!-- Mobile menu -->
                 <div class="mobile-menu hidden md:hidden border-t border-gray-200 pt-2 pb-3">
-                    <a href="{{ route('jetty') }}"
-                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('jetty') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
+                    <a href="{{ route('jetty.index') }}"
+                        class="block px-3 py-2 rounded-md text-base font-medium transition-colors {{ request()->routeIs('jetty.index') ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' }}">
                         Jetty
                     </a>
                     <a href="{{ route('open-yard.index') }}"

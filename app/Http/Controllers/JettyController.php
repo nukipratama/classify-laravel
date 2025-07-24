@@ -23,7 +23,7 @@ class JettyController extends Controller
         $shapes = Shape::cases();
         $cranes = Crane::cases();
 
-        return view('jetty', [
+        return view('jetty.index', [
             'shapes' => $shapes,
             'cranes' => $cranes,
         ]);
@@ -54,10 +54,10 @@ class JettyController extends Controller
         }
 
         if ($alert) {
-            return redirect()->route('jetty')->withInput()->with('alert', $alert);
+            return redirect()->route('jetty.index')->withInput()->with('alert', $alert);
         }
 
-        return redirect()->route('jetty')->with([
+        return redirect()->route('jetty.index')->with([
             'data' => $data,
             'withData' => true,
         ]);

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // only run these seeders on fresh install / migrate
         $this->call([
             InventoryVariantSeeder::class,
             InventorySeeder::class,

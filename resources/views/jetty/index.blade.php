@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Jetty Classification')
+@section('title', 'Jetty')
 
 @section('content')
     <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md mx-auto">
+        <div class="max-w-2xl mx-auto">
             <!-- Page Header -->
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-900">Jetty Classification</h1>
+                <h1 class="text-3xl font-bold text-gray-900">Jetty</h1>
                 <p class="mt-2 text-gray-600">Classify based on Weight, Shape, and Crane Capacity</p>
             </div>
 
@@ -33,7 +33,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('jetty') }}" method="POST" class="space-y-6">
+                <form action="{{ route('jetty.store') }}" method="POST" class="space-y-6">
                     @csrf
 
                     <!-- Berat Input -->
@@ -99,6 +99,20 @@
 
                 <!-- Display Results from Session -->
                 @if(session('withData'))
+                    <div class="mt-6 mb-6 p-4 bg-green-50 border border-green-200 rounded-md">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-green-800">Available</h3>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
                         <h3 class="text-sm font-medium mb-2">Data yang dimasukkan:</h3>
                         <div class="text-sm space-y-1">
@@ -108,6 +122,11 @@
                             </p>
                             <p><strong>Crane:</strong>
                                 {{ session('data.crane')->label() }}
+                            </p>
+                            <p><strong>Result:</strong>
+                                @foreach(session('data.inventory_variants') as $inventoryVariant)
+                                    <p>{{ $inventoryVariant }}</p>
+                                @endforeach
                             </p>
                         </div>
                     </div>

@@ -23,8 +23,8 @@ return new class extends Migration
     {
         Schema::create('jetty_map', function (Blueprint $table) {
             $table->id();
-            $table->decimal('min_weight', 8, 2);
-            $table->decimal('max_weight', 8, 2);
+            $table->float('min_weight', 2);
+            $table->float('max_weight', 2);
             $table->enum('shape', self::SHAPES);
             $table->enum('crane', self::CRANES);
             $table->foreignId('inventory_variant_id')->constrained('inventory_variant');

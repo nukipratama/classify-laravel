@@ -30,8 +30,8 @@ return new class extends Migration
             $table->id();
             $table->enum('type', self::INVENTORY_TYPES);
             $table->string('name');
-            $table->decimal('swl', 8, 2)->default(0);
-            $table->decimal('length', 8, 2)->default(0);
+            $table->float('swl', 2)->default(0);
+            $table->float('length', 2)->default(0);
             $table->timestamps();
 
             $table->unique(['type', 'name', 'swl', 'length'], 'type_name_swl_length_unique');

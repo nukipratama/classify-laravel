@@ -7,21 +7,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Inventory extends Model
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'inventory';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'inventory_variant_id',
         'quantity',
+        'expired_at',
+    ];
+
+    protected $casts = [
+        'expired_at' => 'date',
     ];
 
     public function variant(): BelongsTo
