@@ -21,21 +21,24 @@
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach($inventories as $inventory)
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                @php
+                    $isExpired = $inventory->expired_at && $inventory->expired_at->lt(now()->startOfDay());
+                @endphp
+                <tr class="{{ $isExpired ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-gray-50' }}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm {{ $isExpired ? 'text-red-900' : 'text-gray-900' }}">
                         {{ $inventory->variant->name }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm {{ $isExpired ? 'text-red-900' : 'text-gray-900' }}">
                         {{ $inventory->variant->swl }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm {{ $isExpired ? 'text-red-900' : 'text-gray-900' }}">
                         {{ $inventory->variant->length }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm {{ $isExpired ? 'text-red-900' : 'text-gray-900' }}">
                         {{ $inventory->quantity }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {{ $inventory->expired_at }}
+                    <td class="px-6 py-4 whitespace-nowrap text-sm {{ $isExpired ? 'text-red-900 font-medium' : 'text-gray-900' }}">
+                        {{ $inventory->expired_at ? $inventory->expired_at->format('d M Y') : '-' }}
                     </td>
                 </tr>
             @endforeach
