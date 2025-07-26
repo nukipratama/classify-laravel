@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inventory_variant_id')->constrained('inventory_variant');
             $table->unsignedInteger('quantity');
-            $table->timestamp('expired_at')->nullable();
+            $table->date('expired_at')->nullable();
             $table->timestamps();
 
             $table->index('inventory_variant_id', 'inventory_variant_id_index');
